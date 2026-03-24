@@ -1,0 +1,315 @@
+:root {
+    --pink: #ff2d75;
+    --pink-glow: #ff6b9d;
+    --pink-soft: #ffa0c9;
+    --dark-bg: #0a0a0f;
+    --gold: #ffd700;
+}
+
+body, html {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    background: var(--dark-bg);
+    overflow: hidden;
+    font-family: 'Georgia', serif;
+    cursor: none;
+}
+
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--pink);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    will-change: transform;
+    box-shadow: 0 0 8px var(--pink);
+}
+
+.custom-cursor::after {
+    content: '♥';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8px;
+    color: var(--pink);
+}
+
+.cursor-sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    font-size: 12px;
+    color: var(--pink);
+    will-change: transform, opacity;
+    animation: sparkleFloat 0.7s ease-out forwards;
+}
+
+@keyframes sparkleFloat {
+    0% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg); }
+    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0) rotate(180deg); }
+}
+
+#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    border-radius: 50%;
+    animation: twinkle 2s ease-in-out infinite;
+    will-change: opacity;
+}
+
+.star--pink {
+    background: var(--pink-soft);
+}
+
+.star--white {
+    background: white;
+}
+
+.star--gold {
+    background: var(--gold);
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+.bokeh {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 3;
+    will-change: transform, opacity;
+    animation: bokehFloat linear infinite;
+}
+
+@keyframes bokehFloat {
+    0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-100vh) translateX(50px) scale(0.5); opacity: 0; }
+}
+
+#scene-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.giant-text {
+    position: absolute;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    color: var(--pink);
+    text-shadow: 0 0 20px var(--pink), 0 0 50px var(--pink), 0 0 80px var(--pink);
+    text-transform: uppercase;
+    opacity: 0;
+    text-align: center;
+    font-family: 'Arial Black', sans-serif;
+    letter-spacing: 5px;
+}
+
+#intro-heart {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    cursor: none;
+    z-index: 100;
+    filter: drop-shadow(0 0 15px #ff2d75);
+    animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+#main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.greeting-card {
+    position: relative;
+    background: linear-gradient(135deg, #fff5f8 0%, #fff 100%);
+    border-radius: 20px;
+    padding: 30px 50px;
+    text-align: center;
+    min-width: 280px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    overflow: visible;
+}
+
+.greeting-card::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, var(--pink), var(--gold), var(--pink-glow), var(--pink));
+    background-size: 300% 300%;
+    animation: gradientSpin 4s ease infinite;
+    z-index: -1;
+}
+
+.greeting-card::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, var(--pink), var(--gold), var(--pink-glow), var(--pink));
+    background-size: 300% 300%;
+    animation: gradientSpin 4s ease infinite;
+    z-index: -2;
+    opacity: 0.3;
+}
+
+@keyframes gradientSpin {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.card-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.small-heart {
+    font-size: 1.3rem;
+    animation: heartbeat 1s infinite;
+}
+
+.greeting-text {
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    color: #333;
+    margin: 0;
+    font-weight: normal;
+    font-style: italic;
+    letter-spacing: 2px;
+    animation: textGlow 3s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+    0%, 100% { text-shadow: none; }
+    50% { text-shadow: 0 0 8px rgba(255, 45, 117, 0.3); }
+}
+
+.sub-text {
+    font-size: 1.8rem;
+    margin-top: 10px;
+    opacity: 0;
+    display: block;
+}
+
+.photo-book {
+    position: relative;
+    width: 280px;
+    height: 350px;
+    perspective: 1500px;
+    opacity: 0;
+    transform: scale(0.8);
+    cursor: none;
+}
+
+.photo-book-page {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 5px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 25px rgba(255, 45, 117, 0.5);
+    transition: transform 0.8s ease-in-out;
+    transform-style: preserve-3d;
+}
+
+.photo-book-page img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s;
+}
+
+.photo-book-page.flipping {
+    animation: flipPage 0.8s ease-in-out;
+}
+
+@keyframes flipPage {
+    0% { transform: rotateY(0); }
+    50% { transform: rotateY(90deg); }
+    100% { transform: rotateY(0); }
+}
+
+.page-indicator {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 1rem;
+    font-family: 'Georgia', serif;
+    text-shadow: 0 0 10px var(--pink);
+}
+
+#final-heart-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    z-index: 50;
+}
+
+.final-photo {
+    position: absolute;
+    width: 70px;
+    height: 90px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 3px solid white;
+    box-shadow: 0 0 15px var(--pink);
+    opacity: 0;
+    background: white;
+    transition: transform 0.3s;
+}
+
+.final-photo:hover {
+    transform: scale(1.15) !important;
+    z-index: 100 !important;
+}
+
+.final-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

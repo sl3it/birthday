@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Anita</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="matrix"></canvas>
+<div id="stars"></div>
+<div id="scene-container">
+    <div id="display-box" class="giant-text"></div>
+    <canvas id="intro-heart" style="display: none;"></canvas>
+    <div id="main-container" style="display: none;">
+        <div class="greeting-card">
+            <div class="card-header">
+                <span class="small-heart">💕</span>
+            </div>
+            <h1 class="greeting-text">Happy Birthday Anita</h1>
+            <span class="sub-text">✨ С любовью ✨</span>
+        </div>
+        <div class="photo-book" id="photo-book">
+            <div class="photo-book-page" id="current-photo">
+                <img src="photo_2026-03-11_18-07-25.jpg" alt="" loading="lazy">
+            </div>
+            <div class="page-indicator">1 / 4</div>
+        </div>
+    </div>
+    
+  <div id="final-heart-container" style="display: none;"></div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
